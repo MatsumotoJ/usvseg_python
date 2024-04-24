@@ -20,8 +20,8 @@ Alternatively, you can install the software in a Python venv virtual environment
 ```
 C:\> python -m venv usvseg 
 C:\> .\usvseg\scripts\activate.bat 
-C:\> pip install numpy scipy matplotlib tqdm pyyaml PyQt5 opencv-python
-C:\> pip install usvseg
+(usvseg) C:\> pip install numpy scipy matplotlib tqdm pyyaml PyQt5 opencv-python
+(usvseg) C:\> pip install usvseg
 ```
 
 To start the USVSEG GUI, run the following commands in the virtual environment:
