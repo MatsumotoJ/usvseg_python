@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usvseg"
+version = "1.0.0"
+authors = [
+  { name="Jumpei Matsumoto", email="jm@med.u-toyama" },
+]
+description = "Python ver of USVSEG"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Homepage = "https://github.com/MatsumotoJ/usvseg"
+Issues = "https://github.com/MatsumotoJ/usvseg/issues"
+
+[tool.setuptools]
+packages = ["usvseg"]
+
+[tool.setuptools.package-data]
+usvseg = ["*.yaml"]
+
+[project.scripts]
+usvseg = "usvseg.gui:main"
