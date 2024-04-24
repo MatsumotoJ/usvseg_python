@@ -20,8 +20,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/MatsumotoJ/usvseg"
-Issues = "https://github.com/MatsumotoJ/usvseg/issues"
+Homepage = "https://github.com/MatsumotoJ/usvseg_python"
+Issues = "https://github.com/MatsumotoJ/usvseg_python/issues"
 
 [tool.setuptools]
 packages = ["usvseg"]
