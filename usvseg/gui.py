@@ -336,7 +336,7 @@ class MainWindow(QWidget):
         
         self.update_params()
 
-        fp, _ = QFileDialog.getOpenFileName(self, 'input file', '.', filter='*.wav')
+        fp, _ = QFileDialog.getOpenFileName(self, 'input file', '.', filter='(*.wav *.flac)')
         if len(fp) == 0:
             return 
         

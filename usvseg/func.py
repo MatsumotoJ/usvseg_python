@@ -5,6 +5,7 @@ import scipy.io
 import copy
 import cv2
 import os
+import soundfile
 import wave
 import csv
 from tqdm import tqdm
@@ -639,14 +640,11 @@ def segfun(startid,outp,prefix,inputimg,imrng,wav,fs,timestep,margin,onoffset,tv
                 np.savetxt(fname, ss, delimiter=',', fmt='%.10e')
 
 def wavread(wf, pos, npoints):
-    wf.setpos(pos)
-    buf = wf.readframes(npoints)
-    if wf.getsampwidth() == 2:
-        x = np.frombuffer(buf, dtype='int16') / np.iinfo(np.int16).max
-    elif wf.getsampwidth() == 4:
-        x = np.frombuffer(buf, dtype='int32') / np.iinfo(np.int32).max
+    
+    wf.seek(pos)
+    x = wf.read(npoints, always_2d=True)
 
-    return x
+    return x[:,0]   # use ch 0
 
 def proc_wavfile(params, fp, savefp, outp, fname_audiblewav=None, ui_thread=None, usvcamflg=False):
 
@@ -669,10 +667,10 @@ def proc_wavfile(params, fp, savefp, outp, fname_audiblewav=None, ui_thread=None
     mapL = params['mapL']
     mapH = params['mapH']
 
-    with wave.open(fp, mode='rb') as wf:
+    with soundfile.SoundFile(fp, 'r') as wf:
 
-        wavsize = wf.getnframes()
-        fs = wf.getframerate()
+        wavsize = wf.frames
+        fs = wf.samplerate
         nreadsize= round(readsize*fs)
         nread = math.ceil(wavsize/nreadsize)
         fvec = np.arange(0, fs/2+1, fs/fftsize, dtype=float)
@@ -805,6 +803,7 @@ def proc_wavfile(params, fp, savefp, outp, fname_audiblewav=None, ui_thread=None
             data = data[I,:]
             synthsnd = soundsynthesis(data[:,2],data[:,1],data[:,0],fs,playfs,[mapL, mapH])
 
-        scipy.io.wavfile.write(fname_audiblewav, rate=playfs, data=(synthsnd*32765).astype(np.int16))
+        soundfile.write(fname_audiblewav, data=(synthsnd*32765).astype(np.int16), samplerate=playfs)
+        #scipy.io.wavfile.write(fname_audiblewav, rate=playfs, data=(synthsnd*32765).astype(np.int16))
 
 

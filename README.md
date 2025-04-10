@@ -12,7 +12,7 @@ To install the software in an Anaconda virtual environment, run the following co
 ```
 (base) C:\> conda create -n usvseg python=3.7 numpy scipy matplotlib tqdm pyyaml
 (base) C:\> conda activate usvseg
-(usvseg) C:\> pip install opencv-python
+(usvseg) C:\> pip install opencv-python soundfile
 (usvseg) C:\> pip install usvseg
 ```
 
@@ -20,7 +20,7 @@ Alternatively, you can install the software in a Python venv virtual environment
 ```
 C:\> python -m venv usvseg 
 C:\> .\usvseg\scripts\activate.bat 
-(usvseg) C:\> pip install numpy scipy matplotlib tqdm pyyaml PyQt5 opencv-python
+(usvseg) C:\> pip install numpy scipy matplotlib tqdm pyyaml PyQt5 opencv-python soundfile
 (usvseg) C:\> pip install usvseg
 ```
 
